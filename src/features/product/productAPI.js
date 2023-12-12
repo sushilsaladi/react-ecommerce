@@ -6,9 +6,15 @@ export function fetchAllProducts() {
     resolve({ data });
   });
 }
+export function fetchProductById(id) {
+  return new Promise(async (resolve) => {
+    const response = await fetch("http://localhost:8080/products/" + id);
+    const data = await response.json();
+    resolve({ data });
+  });
+}
 export function fetchAllCategories() {
   return new Promise(async (resolve) => {
-    //TODO : We will not hardcode server url here
     const response = await fetch("http://localhost:8080/categories");
     const data = await response.json();
     resolve({ data });
@@ -16,7 +22,6 @@ export function fetchAllCategories() {
 }
 export function fetchAllBrands() {
   return new Promise(async (resolve) => {
-    //TODO : We will not hardcode server url here
     const response = await fetch("http://localhost:8080/brands");
     const data = await response.json();
     resolve({ data });
