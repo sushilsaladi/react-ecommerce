@@ -9,6 +9,7 @@ import {
   selectItems,
   updateCartAsync,
 } from "../../cart/cartSlice";
+import { Navigate } from "react-router-dom";
 
 export function Cart() {
   const [open, setOpen] = useState(true);
@@ -31,6 +32,7 @@ export function Cart() {
 
   return (
     <>
+      {!items.length && <Navigate to="/" replace={true}></Navigate>}
       <div className="mx-auto mt-4 max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="mt-8 px-4 py-6 sm:px-6">
           <h1 className="text-4xl font-bold tracking-tight mb-4 text-gray-900">
@@ -108,12 +110,12 @@ export function Cart() {
             Shipping and taxes calculated at checkout.
           </p>
           <div className="mt-6">
-            <a
-              href="#"
+            <Link
+              to={"/checkout"}
               className="flex items-center justify-center rounded-md border border-transparent bg-indigo-600 px-6 py-3 text-base font-medium text-white shadow-sm hover:bg-indigo-700"
             >
               Checkout
-            </a>
+            </Link>
           </div>
           <div className="mt-6 flex justify-center text-center text-sm text-gray-500">
             <p>
