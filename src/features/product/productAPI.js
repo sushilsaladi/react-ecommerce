@@ -6,6 +6,22 @@ export function fetchAllProducts() {
     resolve({ data });
   });
 }
+export function fetchAllCategories() {
+  return new Promise(async (resolve) => {
+    //TODO : We will not hardcode server url here
+    const response = await fetch("http://localhost:8080/categories");
+    const data = await response.json();
+    resolve({ data });
+  });
+}
+export function fetchAllBrands() {
+  return new Promise(async (resolve) => {
+    //TODO : We will not hardcode server url here
+    const response = await fetch("http://localhost:8080/brands");
+    const data = await response.json();
+    resolve({ data });
+  });
+}
 
 export function fetchProductByFilter({ filter, sort, pagination }) {
   //filter = {category : ["smartphones","laptops"], brand : ["apple", "samsung"]}

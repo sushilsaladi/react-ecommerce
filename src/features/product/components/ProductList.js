@@ -1,8 +1,12 @@
 import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import {
+  fetchAllBrandsAsync,
+  fetchAllCategoriesAsync,
   fetchAllProductsAsync,
   fetchProductByFilterAsync,
+  selectAllBrands,
+  selectAllCategories,
   selectAllProducts,
   selectTotalItems,
 } from "../productSlice";
@@ -27,70 +31,6 @@ const sortOptions = [
   { name: "Price: High to Low", sort: "price", order: "desc", current: false },
 ];
 
-const filters = [
-  {
-    id: "category",
-    name: "Category",
-    options: [
-      { value: "smartphones", label: "Smartphones", checked: false },
-      { value: "laptops", label: "Laptops", checked: false },
-      { value: "fragrances", label: "Fragrances", checked: false },
-      { value: "skincare", label: "Skincare", checked: false },
-      { value: "groceries", label: "Groceries", checked: false },
-      { value: "home-decoration", label: "Home Decoration", checked: false },
-    ],
-  },
-  {
-    id: "brand",
-    name: "Brand",
-    options: [
-      { value: "Apple", label: "Apple", checked: false },
-      { value: "Samsung", label: "Samsung", checked: false },
-      { value: "OPPO", label: "OPPO", checked: false },
-      { value: "Huawei", label: "Huawei", checked: false },
-      {
-        value: "Microsoft Surface",
-        label: "Microsoft Surface",
-        checked: false,
-      },
-      { value: "Infinix", label: "Infinix", checked: false },
-      { value: "HP Pavilion", label: "HP Pavilion", checked: false },
-      {
-        value: "Impression of Acqua Di Gio",
-        label: "Impression of Acqua Di Gio",
-        checked: false,
-      },
-      { value: "Royal_Mirage", label: "Royal Mirage", checked: false },
-      {
-        value: "Fog Scent Xpressio",
-        label: "Fog Scent Xpressio",
-        checked: false,
-      },
-      { value: "Al Munakh", label: "Al Munakh", checked: false },
-      { value: "Lord - Al-Rehab", label: "Lord - Al-Rehab", checked: false },
-      { value: "L'Oreal Paris", label: "L'Oreal Paris", checked: false },
-      { value: "Hemani Tea", label: "Hemani Tea", checked: false },
-      { value: "Dermive", label: "Dermive", checked: false },
-      { value: "ROREC White Rice", label: "ROREC White Rice", checked: false },
-      { value: "Fair & Clear", label: "Fair & Clear", checked: false },
-      { value: "Saaf & Khaas", label: "Saaf & Khaas", checked: false },
-      { value: "Bake Parlor Big", label: "Bake Parlor Big", checked: false },
-      {
-        value: "Baking Food Items",
-        label: "Baking Food Items",
-        checked: false,
-      },
-      { value: "fauji", label: "fauji", checked: false },
-      { value: "Dry Rose", label: "Dry Rose", checked: false },
-      { value: "Boho Decor", label: "Boho Decor", checked: false },
-      { value: "Flying Wooden", label: "Flying Wooden", checked: false },
-      { value: "LED Lights", label: "LED Lights", checked: false },
-      { value: "luxury palace", label: "luxury palace", checked: false },
-      { value: "Golden", label: "Golden", checked: false },
-    ],
-  },
-];
-
 function classNames(...classes) {
   return classes.filter(Boolean).join(" ");
 }
@@ -100,6 +40,21 @@ export function ProductList() {
   const [mobileFiltersOpen, setMobileFiltersOpen] = useState(false);
   const products = useSelector(selectAllProducts);
   const totalItems = useSelector(selectTotalItems);
+  const categories = useSelector(selectAllCategories);
+  const brands = useSelector(selectAllBrands);
+
+  const filters = [
+    {
+      id: "category",
+      name: "Category",
+      options: categories,
+    },
+    {
+      id: "brand",
+      name: "Brand",
+      options: brands,
+    },
+  ];
 
   const [filter, setFilter] = useState({});
   const [sort, setSort] = useState({});
@@ -139,6 +94,11 @@ export function ProductList() {
     dispatch(fetchProductByFilterAsync({ filter, sort, pagination })); //getting all products
   }, [dispatch, filter, sort, page]);
 
+  useEffect(() => {
+    dispatch(fetchAllCategoriesAsync());
+    dispatch(fetchAllBrandsAsync());
+  }, []);
+
   return (
     <div>
       <div className="bg-white">
@@ -146,6 +106,7 @@ export function ProductList() {
           <MobileFilter
             mobileFiltersOpen={mobileFiltersOpen}
             setMobileFiltersOpen={setMobileFiltersOpen}
+            filters={filters}
           ></MobileFilter>
 
           <main className="mx-auto max-w-7xl sm:px-6 lg:px-8">
@@ -247,7 +208,7 @@ export function ProductList() {
   );
 }
 
-function MobileFilter({ mobileFiltersOpen, setMobileFiltersOpen }) {
+function MobileFilter({ mobileFiltersOpen, setMobileFiltersOpen, filters }) {
   return (
     <Transition.Root show={mobileFiltersOpen} as={Fragment}>
       <Dialog
