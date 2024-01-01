@@ -7,36 +7,13 @@ import {
 } from "../features/cart/cartSlice";
 import { Navigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
-import {
-  selectLoggedInUser,
-  updateUserAsync,
-} from "../features/auth/authSlice";
+import { selectLoggedInUser } from "../features/auth/authSlice";
 import { useState } from "react";
 import {
   createOrderAsync,
   selectCurrentOrder,
 } from "../features/order/orderSlice";
-
-// const addresses = [
-//   {
-//     fullName: "John",
-//     age: "28",
-//     street: "11th Main",
-//     city: "New Delhi",
-//     email: "john@gmail.com",
-//     state: "New Delhi",
-//     pincode: "23456",
-//   },
-//   {
-//     fullName: "test",
-//     age: "28",
-//     street: "Central Perk",
-//     city: "Hyderabad",
-//     email: "test@gmail.com",
-//     state: "Hyderabad",
-//     pincode: "1221",
-//   },
-// ];
+import { selectUserInfo, updateUserAsync } from "../features/user/userSlice";
 
 function Checkout() {
   const dispatch = useDispatch();
@@ -47,7 +24,7 @@ function Checkout() {
     formState: { errors },
   } = useForm();
 
-  const user = useSelector(selectLoggedInUser);
+  const user = useSelector(selectUserInfo);
   const items = useSelector(selectItems);
   const currentOrder = useSelector(selectCurrentOrder);
   const totalAmount = items.reduce(
@@ -85,10 +62,9 @@ function Checkout() {
       user,
       paymentMethod,
       selectedAddress,
+      status: "pending",
     };
     dispatch(createOrderAsync(order));
-    //TODO : Redirect to order-success page
-    //TODO : clear cart after order
     //TODO : on server change the stock number of items
   };
 
