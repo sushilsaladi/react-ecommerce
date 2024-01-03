@@ -28,3 +28,20 @@ export function checkUser(loginInfo) {
     }
   });
 }
+
+export function signOut(userId) {
+  return new Promise(async (resolve, reject) => {
+    try {
+      const response = await fetch("/auth/logout");
+      if (response.ok) {
+        resolve({ data: "success" });
+      } else {
+        const error = await response.text();
+        reject(error);
+      }
+    } catch (error) {
+      console.log(error);
+      reject(error);
+    }
+  });
+}

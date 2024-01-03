@@ -2051,28 +2051,7 @@
       "id": 2
     }
   ],
-  "cart": [
-    {
-      "title": "iPhone X",
-      "description": "SIM-Free, Model A19211 6.5-inch Super Retina HD display with OLED technology A12 Bionic chip with ...",
-      "price": 899,
-      "discountPercentage": 17.94,
-      "rating": 4.44,
-      "stock": 34,
-      "brand": "Apple",
-      "category": "smartphones",
-      "thumbnail": "https://i.dummyjson.com/data/products/2/thumbnail.jpg",
-      "images": [
-        "https://i.dummyjson.com/data/products/2/1.jpg",
-        "https://i.dummyjson.com/data/products/2/2.jpg",
-        "https://i.dummyjson.com/data/products/2/3.jpg",
-        "https://i.dummyjson.com/data/products/2/thumbnail.jpg"
-      ],
-      "quantity": 1,
-      "user": 1,
-      "id": 1
-    }
-  ],
+  "cart": [],
   "orders": [
     {
       "items": [
@@ -2359,6 +2338,95 @@
       },
       "status": "pending",
       "id": 4
+    },
+    {
+      "items": [
+        {
+          "title": "iPhone X",
+          "description": "SIM-Free, Model A19211 6.5-inch Super Retina HD display with OLED technology A12 Bionic chip with ...",
+          "price": 899,
+          "discountPercentage": 17.94,
+          "rating": 4.44,
+          "stock": 34,
+          "brand": "Apple",
+          "category": "smartphones",
+          "thumbnail": "https://i.dummyjson.com/data/products/2/thumbnail.jpg",
+          "images": [
+            "https://i.dummyjson.com/data/products/2/1.jpg",
+            "https://i.dummyjson.com/data/products/2/2.jpg",
+            "https://i.dummyjson.com/data/products/2/3.jpg",
+            "https://i.dummyjson.com/data/products/2/thumbnail.jpg"
+          ],
+          "quantity": 1,
+          "user": 1,
+          "id": 1
+        },
+        {
+          "title": "Samsung Universe 9",
+          "description": "Samsung's new variant which goes beyond Galaxy to the Universe",
+          "price": 1249,
+          "discountPercentage": 15.46,
+          "rating": 4.09,
+          "stock": 36,
+          "brand": "Samsung",
+          "category": "smartphones",
+          "thumbnail": "https://i.dummyjson.com/data/products/3/thumbnail.jpg",
+          "images": [
+            "https://i.dummyjson.com/data/products/3/1.jpg"
+          ],
+          "quantity": 1,
+          "user": 1,
+          "id": 2
+        }
+      ],
+      "totalAmount": 2148,
+      "totalItems": 2,
+      "user": {
+        "email": "john@gmail.com",
+        "password": "Qwerty123",
+        "addresses": [
+          {
+            "name": "John Doe ",
+            "email": "john@gmail.com",
+            "phone": "665324642",
+            "street": "58th Street 12Ave",
+            "city": "NY",
+            "state": "NY",
+            "pinCode": "12554"
+          },
+          {
+            "name": "John Doe",
+            "email": "john@gmail.com",
+            "phone": "553342",
+            "street": "the wall street",
+            "city": "wall",
+            "state": "Street",
+            "pinCode": "34523"
+          },
+          {
+            "name": "John Doe",
+            "email": "john@gmail.com",
+            "city": "hyd",
+            "state": "Tel",
+            "pinCode": "500030",
+            "phone": "12334567687",
+            "street": "Fall Street"
+          }
+        ],
+        "id": 1
+      },
+      "paymentMethod": "cash",
+      "selectedAddress": {
+        "name": "John Doe ",
+        "email": "john@gmail.com",
+        "phone": "665324642",
+        "street": "58th Street 12Ave",
+        "city": "NY",
+        "state": "NY",
+        "pinCode": "12554"
+      },
+      "status": "pending",
+      "id": 5
     }
   ]
 }
